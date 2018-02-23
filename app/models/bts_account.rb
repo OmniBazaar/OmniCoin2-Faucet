@@ -9,6 +9,8 @@ class BtsAccount < ActiveRecord::Base
   }
   validates :owner_key, presence: true
   validates :active_key, presence: true
+  validates :harddrive_id, presence: true
+  validates :mac_address, presence: true
   #validates :memo_key, presence: true
 
   validates_uniqueness_of :remote_ip, conditions: -> {where("created_at > '#{(DateTime.now - 5.minutes).to_s(:db)}'")}, message: "Can't register more than one account per IP in less than 5 minutes"
@@ -44,7 +46,7 @@ class BtsAccount < ActiveRecord::Base
         referral_code = ReferralCode.where(code: self.refcode).first
         referrer = referral_code.funded_by if referral_code
     end
-    result = AccountRegistrator.new(nil, logger).register(self.name, self.active_key, self.owner_key, self.memo_key, referrer)
+    result = AccountRegistrator.new(nil, logger).register(self.name, self.active_key, self.owner_key, self.memo_key, self.harddrive_id, self.mac_address,  referrer)
     if result[:error]
       errors.add(:base, result[:error]['message'] ? result[:error]['message'] : 'unknown backend error')
       return false

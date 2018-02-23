@@ -22,6 +22,8 @@ class CreateOrigSchema < ActiveRecord::Migration
             t.string 'owner_key'
             t.string 'active_key'
             t.string 'memo_key'
+            t.string 'harddrive_id'
+            t.string 'mac_address'
             t.string 'referrer'
             t.string 'refcode'
             t.string 'remote_ip'

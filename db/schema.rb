@@ -27,15 +27,17 @@ ActiveRecord::Schema.define(version: 1) do
   add_index "assets", ["symbol"], name: "index_assets_on_symbol", unique: true, using: :btree
 
   create_table "bts_accounts", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.string   "name",       limit: 255
-    t.string   "objectid",   limit: 255
-    t.string   "owner_key",  limit: 255
-    t.string   "active_key", limit: 255
-    t.string   "memo_key",   limit: 255
-    t.string   "referrer",   limit: 255
-    t.string   "refcode",    limit: 255
-    t.string   "remote_ip",  limit: 255
+    t.integer  "user_id",      limit: 4
+    t.string   "name",         limit: 255
+    t.string   "objectid",     limit: 255
+    t.string   "owner_key",    limit: 255
+    t.string   "active_key",   limit: 255
+    t.string   "memo_key",     limit: 255
+    t.string   "harddrive_id", limit: 255
+    t.string   "mac_address",  limit: 255
+    t.string   "referrer",     limit: 255
+    t.string   "refcode",      limit: 255
+    t.string   "remote_ip",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

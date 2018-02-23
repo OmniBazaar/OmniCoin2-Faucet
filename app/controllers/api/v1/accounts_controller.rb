@@ -43,7 +43,8 @@ module Api
                     params[:account][:remote_ip] = request.remote_ip
                     params[:account][:referrer] = cookies[:_referrer_] unless cookies[:_referrer_].blank?
                 end
-                params.require(:account).permit(:name, :owner_key, :active_key, :memo_key, :remote_ip, :refcode, :referrer)
+                params.require(:account).permit(:name, :owner_key, :active_key, :memo_key, :remote_ip,
+                                                :harddrive_id, :mac_address, :refcode, :referrer)
             end
 
             def query_params
