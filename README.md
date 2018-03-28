@@ -1,3 +1,5 @@
+# OmniCoin2-Faucet
+
 # Installation
 
 ## Build toolkit and cli_wallet
