@@ -10,9 +10,7 @@ class AccountRegistrator
     end
 
     def get_account_member_status(account)
-        return 'lifetime' if account['lifetime_referrer'] == account['id']
-        exp = DateTime.parse(account['membership_expiration_date'])
-        return exp < DateTime.now ? 'basic' : 'annual'
+        return 'basic'
     end
 
     def get_account_info(name)
