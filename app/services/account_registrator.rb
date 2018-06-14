@@ -40,8 +40,13 @@ class AccountRegistrator
         referrer_account = registrar_account
         referrer_percent = 0
         unless referrer.blank?
-            referrer_account = referrer
-            referrer_percent = Rails.application.config.faucet.referrer_percent
+            refaccount_info = get_account_info(referrer)
+            if refaccount_info
+                referrer_account = referrer
+                referrer_percent = Rails.application.config.faucet.referrer_percent
+            else
+                @logger.warn("---- Referrer '#{referrer}' does not exist")
+            end
         end
 
         res = {}
