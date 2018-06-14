@@ -40,13 +40,8 @@ class AccountRegistrator
         referrer_account = registrar_account
         referrer_percent = 0
         unless referrer.blank?
-            refaccount_info = get_account_info(referrer)
-            if refaccount_info && (refaccount_info[:member_status] == 'lifetime' || refaccount_info[:member_status] == 'annual')
-                referrer_account = referrer
-                referrer_percent = Rails.application.config.faucet.referrer_percent
-            else
-                @logger.warn("---- Referrer '#{referrer}' is not a member")
-            end
+            referrer_account = referrer
+            referrer_percent = Rails.application.config.faucet.referrer_percent
         end
 
         res = {}
