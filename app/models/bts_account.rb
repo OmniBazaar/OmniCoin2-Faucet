@@ -45,9 +45,6 @@ class BtsAccount < ActiveRecord::Base
       errors.add(:base, result[:error]['message'] ? result[:error]['message'] : 'unknown backend error')
       return false
     end
-
-    referral_code.claim(self.name) if referral_code
-
     return true
   end
 
