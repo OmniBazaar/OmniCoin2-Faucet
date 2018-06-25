@@ -5,18 +5,10 @@ class AccountRegistrator
         @logger = logger
     end
 
-    def is_cheap_name(account_name)
-        return /[0-9-]/ =~ account_name || !(/[aeiouy]/ =~ account_name)
-    end
-
-    def get_account_member_status(account)
-        return 'basic'
-    end
-
     def get_account_info(name)
         account = GrapheneCli.instance.exec('get_account', [name])
         if account && account[0] && account[0]['id']
-            return {id: account[0]['id'], member_status: get_account_member_status(account[0])}
+            return {id: account[0]['id']}
         end
         return nil
     end
@@ -27,11 +19,6 @@ class AccountRegistrator
         if get_account_info(account_name)
             @logger.warn("---- Account exists: '#{account_name}' #{get_account_info(account_name)}")
             return {error: {'message' => 'Account exists'}}
-        end
-
-        if !is_cheap_name(account_name)
-            @logger.warn("---- Attempt to register premium name: '#{account_name}'")
-            return {error: {'message' => 'Premium names registration is not supported by this faucet'}}
         end
 
         registrar_account = Rails.application.config.faucet.registrar_account
