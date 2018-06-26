@@ -3,10 +3,7 @@ class BtsAccount < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :name, presence: true, format: {
-      with: /\A[a-z]+(?:[a-z0-9\-\.])*[a-z0-9]\z/,
-      message: 'Only lowercase alphanumeric characters, dashes and periods. Must start with a letter and cannot end with a dash.'
-  }
+  validates :name, presence: true
   validates :owner_key, presence: true
   validates :active_key, presence: true
   validates :harddrive_id, presence: true
