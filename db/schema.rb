@@ -33,8 +33,6 @@ ActiveRecord::Schema.define(version: 1) do
     t.string   "owner_key",    limit: 255
     t.string   "active_key",   limit: 255
     t.string   "memo_key",     limit: 255
-    t.string   "harddrive_id", limit: 255
-    t.string   "mac_address",  limit: 255
     t.string   "referrer",     limit: 255
     t.string   "refcode",      limit: 255
     t.string   "remote_ip",    limit: 255
