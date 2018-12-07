@@ -8,7 +8,7 @@ class BtsAccount < ActiveRecord::Base
   validates :active_key, presence: true
   #validates :memo_key, presence: true
 
-  validates_uniqueness_of :remote_ip, conditions: -> {where("created_at > '#{(DateTime.now - 5.minutes).to_s(:db)}'")}, message: "Can't register more than one account per IP in less than 5 minutes"
+  validates_uniqueness_of :remote_ip, conditions: -> {where("created_at > '#{(DateTime.now - 1.hour).to_s(:db)}'")}, message: "Can't register more than one account per IP in less than 1 hour"
 
   before_create :register_account
 
